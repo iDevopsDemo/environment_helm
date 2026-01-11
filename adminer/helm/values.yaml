@@ -15,7 +15,7 @@ service:
   type: ClusterIP
   port: 80
 
-env:          
+env:
  ADMINER_DEFAULT_SERVER: mysql
 
 ingress:
@@ -23,7 +23,6 @@ ingress:
   tls: true
   host: example.edge.mydevops.info
   certificateIssuer: "letsencrypt-prod"
-
 
 resources: {}
 nodeSelector: {}
