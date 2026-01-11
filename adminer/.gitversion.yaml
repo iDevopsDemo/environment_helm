@@ -3,7 +3,7 @@ mode: ManualDeployment
 tag-prefix: 'adminer-[vV]?'
 ignore:
   paths:
-    - ^(?!\/adminer\/).*
+    - ^(?!adminer\/).*
 branches:
   main:
     label: rc
