@@ -57,6 +57,7 @@ jobs:
         with:
           CHART_DIR: "./mysql/helm"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITVERSION_TARGET_PATH: "./mysql/"
 
   promote:
     needs: [helm-build]
