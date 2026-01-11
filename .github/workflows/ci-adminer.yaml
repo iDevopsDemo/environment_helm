@@ -58,7 +58,7 @@ jobs:
         with:
           CHART_DIR: "./adminer/helm"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          GITVERSION_TARGET_PATH: "./adminer/"
+          GITVERSION_CONFIG_FILE: "./adminer/.gitversion.yaml"
 
   # promote:
   #   needs: [helm-build]
