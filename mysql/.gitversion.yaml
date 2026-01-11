@@ -1,0 +1,11 @@
+workflow: GitFlow/v1
+mode: ManualDeployment
+tag-prefix: 'mysql-[vV]?'
+ignore:
+  paths:
+    - ^(?!\/mysql\/).*
+branches:
+  main:
+    label: rc
+  support:
+    label: beta

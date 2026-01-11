@@ -1,0 +1,5 @@
+chart-dirs:
+  - mysql/helm
+validate-maintainers: false
+chart-yaml-schema: chart_schema.yaml
+lint-conf: lintconf.yaml

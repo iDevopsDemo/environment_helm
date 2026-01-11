@@ -1,4 +1,4 @@
-name: Test and Package Adminer Helm Chart
+name: Test and Package MYSQL Helm Chart
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
       - 'bugfix/*'
       - 'feature/*'
     tags:
-      - 'adminer-v[0-9]+.[0-9]+.[0-9]+'
-      - 'adminer-[0-9]+.[0-9]+.[0-9]+'
+      - 'mysql-v[0-9]+.[0-9]+.[0-9]+'
+      - 'mysql-[0-9]+.[0-9]+.[0-9]+'
     paths:
-      - 'adminer/**'
+      - 'mysql/**'
   pull_request:
     types: [ opened, synchronize, reopened ]
     branches: [ main ]
@@ -42,7 +42,7 @@ jobs:
       - uses: iDevopsDemo/environment_cicd/.github/helm-test@main
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CONFIG_FILE: "./adminer/ct.yaml"
+          CONFIG_FILE: "./mysql/ct.yaml"
 
   helm-build:
     runs-on: ubuntu-latest
@@ -55,16 +55,16 @@ jobs:
       - uses: iDevopsDemo/environment_cicd/.github/helm-build@main
         id: helm-build
         with:
-          CHART_DIR: "./adminer/helm"
+          CHART_DIR: "./mysql/helm"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-  # promote:
-  #   needs: [helm-build]
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     packages: write
-  #   steps:
-  #       - uses: iDevopsDemo/environment_cicd/.github/promote-new@main
-  #         with:
-  #           CHART_NAME: "${{ needs.helm-build.outputs.chart-name }}"
-  #           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  promote:
+    needs: [helm-build]
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+        - uses: iDevopsDemo/environment_cicd/.github/promote-new@main
+          with:
+            CHART_NAME: "${{ needs.helm-build.outputs.chart-name }}"
+            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
