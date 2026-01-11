@@ -1,4 +1,4 @@
-name: Test and Package Helm Chart
+name: Test and Package Adminer Helm Chart
 
 on:
   push:
@@ -42,6 +42,7 @@ jobs:
       - uses: iDevopsDemo/environment_cicd/.github/helm-test@main
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CONFIG_FILE: "./adminer/ct.yaml"
 
   helm-build:
     runs-on: ubuntu-latest
