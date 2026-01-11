@@ -42,6 +42,7 @@ jobs:
     steps:
       - uses: iDevopsDemo/environment_cicd/.github/helm-test@main
         with:
+          CHART_DIR: "./mysql/helm"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CONFIG_FILE: "./mysql/ct.yaml"
 
