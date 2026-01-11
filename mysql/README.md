@@ -7,13 +7,13 @@ This chart will deploy a mysql db into the cluster
 Deploy via Helm
 
 ```sh
-helm repo add ses-sample https://code.siemens.com/api/v4/projects/502963/packages/helm/devel
-helm repo update
+#(Optional) In case of private registry usage, login to the registry first:
+helm registry login -u myuser oci://ghcr.io/idevopsdemo/charts/mysql
 
-helm install -n ses-sample mysql ses-sample/mysql
+helm install -n my-namespace mysql oci://ghcr.io/idevopsdemo/charts/mysql
 
 #in order to deploy pre-release version use
-helm install -n ses-sample --devel mysql ses-sample/mysql
+helm install -n my-namespace --devel mysql oci://ghcr.io/idevopsdemo/charts/mysql
 ```
 
 ### Optional Parameters
@@ -21,5 +21,5 @@ helm install -n ses-sample --devel mysql ses-sample/mysql
 TODO
 
 ```sh
-helm upgrade --install -n ses-sample --set nodeSelector."kubernetes\\.io/arch"=amd64 mysql ses-sample/mysql
+helm upgrade --install -n my-namespace --set nodeSelector."kubernetes\\.io/arch"=amd64 mysql oci://ghcr.io/idevopsdemo/charts/mysql
 ```

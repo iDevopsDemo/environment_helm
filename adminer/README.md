@@ -5,13 +5,13 @@
 Deploy via Helm
 
 ```sh
-helm repo add ses-sample https://code.siemens.com/api/v4/projects/502963/packages/helm/devel
-helm repo update
+#(Optional) In case of private registry usage, login to the registry first:
+helm registry login -u myuser oci://ghcr.io/idevopsdemo/charts/adminer
 
-helm install -n ses-sample adminer ses-sample/adminer
+helm install -n my-namespace adminer oci://ghcr.io/idevopsdemo/charts/adminer
 
 #in order to deploy pre-release version use
-helm install -n ses-sample --devel adminer ses-sample/adminer
+helm install -n my-namespace --devel adminer oci://ghcr.io/idevopsdemo/charts/adminer
 ```
 
 ### Optional Parameters
@@ -20,4 +20,4 @@ TODO
 
 ### Test Trigger
 
-Test12
+Test123
