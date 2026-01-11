@@ -23,3 +23,5 @@ TODO
 ```sh
 helm upgrade --install -n my-namespace --set nodeSelector."kubernetes\\.io/arch"=amd64 mysql oci://ghcr.io/idevopsdemo/charts/mysql
 ```
+
+Test Trigger1
