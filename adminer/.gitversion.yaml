@@ -1,0 +1,11 @@
+workflow: GitFlow/v1
+mode: ManualDeployment
+tag-prefix: 'adminer-[vV]?'
+ignore:
+  paths:
+    - ^(?!\/adminer\/).*
+branches:
+  main:
+    label: rc
+  support:
+    label: beta

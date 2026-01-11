@@ -1,0 +1,69 @@
+name: Test and Package Helm Chart
+
+on:
+  push:
+    branches:
+      - main
+      - 'bugfix/*'
+      - 'feature/*'
+    tags:
+      - 'adminer-v[0-9]+.[0-9]+.[0-9]+'
+      - 'adminer-[0-9]+.[0-9]+.[0-9]+'
+    paths:
+      - 'adminer/**'
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: iDevopsDemo/environment_cicd/.github/pre-commit@main
+
+  gitleaks:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+  helm-test:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    steps:
+      - uses: iDevopsDemo/environment_cicd/.github/helm-test@main
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  helm-build:
+    runs-on: ubuntu-latest
+    needs: [helm-test]
+    permissions:
+      packages: write
+    outputs:
+      chart-name: ${{ steps.helm-build.outputs.chart-name }}
+    steps:
+      - uses: iDevopsDemo/environment_cicd/.github/helm-build@main
+        id: helm-build
+        with:
+          CHART_DIR: "./charts/comp-a"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  # promote:
+  #   needs: [helm-build]
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     packages: write
+  #   steps:
+  #       - uses: iDevopsDemo/environment_cicd/.github/promote-new@main
+  #         with:
+  #           CHART_NAME: "${{ needs.helm-build.outputs.chart-name }}"
+  #           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
