@@ -3,7 +3,7 @@ mode: ManualDeployment
 tag-prefix: 'mysql-[vV]?'
 ignore:
   paths:
-    - ^(?!\/mysql\/).*
+    - ^(?!mysql\/).*
 branches:
   main:
     label: rc

@@ -60,13 +60,13 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           GITVERSION_CONFIG_FILE: "./adminer/.gitversion.yaml"
 
-  # promote:
-  #   needs: [helm-build]
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     packages: write
-  #   steps:
-  #       - uses: iDevopsDemo/environment_cicd/.github/promote-new@main
-  #         with:
-  #           CHART_NAME: "${{ needs.helm-build.outputs.chart-name }}"
-  #           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  promote:
+    needs: [helm-build]
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+        - uses: iDevopsDemo/environment_cicd/.github/promote-new@main
+          with:
+            CHART_NAME: "${{ needs.helm-build.outputs.chart-name }}"
+            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

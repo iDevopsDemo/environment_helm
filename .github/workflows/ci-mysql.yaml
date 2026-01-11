@@ -36,6 +36,7 @@ jobs:
 
   helm-test:
     runs-on: ubuntu-latest
+    needs: [gitleaks, pre-commit]
     permissions:
       packages: read
     steps:
@@ -57,7 +58,7 @@ jobs:
         with:
           CHART_DIR: "./mysql/helm"
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          GITVERSION_TARGET_PATH: "./mysql/"
+          GITVERSION_CONFIG_FILE: "./mysql/.gitversion.yaml"
 
   promote:
     needs: [helm-build]
