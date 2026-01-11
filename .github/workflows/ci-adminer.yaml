@@ -70,3 +70,4 @@ jobs:
           with:
             CHART_NAME: "${{ needs.helm-build.outputs.chart-name }}"
             GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+            GITVERSION_CONFIG_FILE: "./mysql/.gitversion.yaml"
