@@ -1,0 +1,6 @@
+'{{ .Chart.Name }}' has been installed as release '{{ .Release.Name }}' in namespace '{{ .Release.Namespace }}'.
+
+To learn more about the release, try:
+
+  $ helm status -n {{ .Release.Namespace }} {{ .Release.Name }}
+  $ helm get all -n {{ .Release.Namespace }} {{ .Release.Name }}

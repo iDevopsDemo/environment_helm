@@ -1,0 +1,11 @@
+workflow: GitFlow/v1
+mode: ManualDeployment
+tag-prefix: 'gamesa-sample-[vV]?'
+ignore:
+  paths:
+    - ^(?!gamesa-sample\/).*
+branches:
+  main:
+    label: rc
+  support:
+    label: beta
