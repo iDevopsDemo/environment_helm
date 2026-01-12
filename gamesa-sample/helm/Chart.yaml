@@ -30,21 +30,21 @@ dependencies:
   condition: mosquitto.enabled
 - name: mysql
   version: 0.x.x-0
-  repository: "oci://ghcr.io/idevopsdemo/charts/mysql"
+  repository: "oci://ghcr.io/idevopsdemo/charts"
   condition: mysql.enabled
 - name: adminer
   version: 0.x.x-0
-  repository: "oci://ghcr.io/idevopsdemo/charts/adminer"
+  repository: "oci://ghcr.io/idevopsdemo/charts"
   condition: adminer.enabled
 - name: comp-a
   version: 0.x.x-0
-  repository: "oci://ghcr.io/idevopsdemo/charts/comp-a"
+  repository: "oci://ghcr.io/idevopsdemo/charts"
   condition: comp-a.enabled
 - name: comp-b
   version: 0.x.x-0
-  repository: "oci://ghcr.io/idevopsdemo/charts/comp-b"
+  repository: "oci://ghcr.io/idevopsdemo/charts"
   condition: comp-b.enabled
 - name: comp-c
   version: 0.x.x-0
-  repository: "oci://ghcr.io/idevopsdemo/charts/comp-c"
+  repository: "oci://ghcr.io/idevopsdemo/charts"
   condition: comp-c.enabled
