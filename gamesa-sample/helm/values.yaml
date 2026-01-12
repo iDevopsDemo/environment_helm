@@ -1,3 +1,16 @@
-mysql:
-  nodeSelector:
-    kubernetes.io/arch: amd64
+adminer:
+  env:
+    ADMINER_DEFAULT_SERVER: "gamesa-sample-mysql"
+
+comp-a:
+  env:
+    QCLIENT_BROKER_HOST: "gamesa-sample-mosquitto"
+
+comp-b:
+  env:
+    QCLIENT_BROKER_HOST: "gamesa-sample-mosquitto"
+    STORAGE_MYSQL_HOST: "gamesa-sample-mysql"
+
+comp-c:
+  env:
+    STORAGE_MYSQL_HOST: "gamesa-sample-mysql"
